@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Greg Donahue, 09/23/2005
 # -----------------------------------------------------------------------------
-import sys, re, pickle, os, random, chisquarematrix, copy, math
+import sys, re, pickle, os, random, copy, math
 from Numeric import array, zeros
 from rpy import *
 # -----------------------------------------------------------------------------
