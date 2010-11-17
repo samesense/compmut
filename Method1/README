@@ -1,0 +1,36 @@
+CM_SCAN detects compensatory mutations (CMs or CMuts) in a transcription factor (TF) binding site (TFBS). It does this in the following way:
+
+The user inputs a list of species (which must include human) and a TFBS position weight matrix (PWM).
+
+CM_SCAN loads the conserved sequence alignment for these species, then scans the human sequence for TFBS.
+
+Each hit above a certain threshold (default is P=-12) is used to construct a motif. Each word in the motif is the aligned sequence from a different organism. The first word in the motif is the hit itself.
+
+For each N-length motif:
+
+1) Construct a phylogeny tree structure on the entire motif using parsimony.
+2) Create N trees, one for each position, by coloring the tree structure.
+3) Traverse each pair of trees corresponding to adjacent sites. Mark down each mutation in a 16x16 matrix. The sum of these marks is the CM score for those two positions.
+
+Repeat this process for randomly-drawn sequence from aligned regions.
+
+Report all significant CMs.
+
+Directory structure of ./doc:
+fasta contains FASTA files which serve as the input to pwm_scan
+gff contains GFF files (the output of pwm_scan)
+maf contains multiple alignment files downloaded from UCSC Genome Browser
+misc contains other files, such as regexes needed to do file-parsing
+pickle contains Python-pickled objects, such as the list of gap corrections
+pwm contains position weight matrix files and p-value lookup tables
+
+Directory structure of ./about:
+. contains meeting notes and my own attempts to figure out what I was doing
+
+Directory structure of ./bin:
+estimator contains the unused phylogeny tree estimator code (my GCB536 project)
+out contains LL scores for each pair of adjacent positions in certain TFBSs
+out_lower_threshold contains the same as out, using a lower PWMSCAN cutoff
+pvalues* contain failed attempts at discovering cmuts using the old edge-model
+
+Useable code is in cm_scan3.py; all other files are supplementary code or are older/prototyped versions of the same program.

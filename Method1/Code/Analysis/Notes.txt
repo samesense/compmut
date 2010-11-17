@@ -1,0 +1,2 @@
+For Gap 0, MA0038 position 1 is significant,
+but its info content is only .09
